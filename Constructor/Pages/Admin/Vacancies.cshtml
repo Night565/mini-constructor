@@ -1,0 +1,108 @@
+@page
+@model VacanciesModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вакансии | Админ-панель</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-topbar">
+            <a class="admin-brand" asp-page="/Admin/Index">
+                <span class="admin-brand__title">TravelLine.Tech</span>
+                <span class="admin-brand__caption">Админ-панель</span>
+            </a>
+            <div class="admin-actions">
+                <a class="admin-button admin-button--secondary" asp-page="/Admin/Index">Назад</a>
+                <a class="admin-button admin-button--secondary" asp-page="/Index">На сайт</a>
+            </div>
+        </header>
+        <div class="admin-container">
+            <div class="admin-page__header">
+                <div>
+                    <h1>Вакансии</h1>
+                </div>
+            </div>
+            <div class="admin-validation" data-admin-validation asp-validation-summary="All"></div>
+            <div class="admin-main-grid">
+                <section class="admin-card">
+                    <h2>Добавить вакансию</h2>
+                    <form class="admin-form" method="post" asp-page-handler="CreateVacancy">
+                        <div class="admin-field">
+                            <label>Название</label>
+                            <input asp-for="NewVacancy.Title">
+                        </div>
+                        <div class="admin-field">
+                            <label>Формат работы</label>
+                            <input asp-for="NewVacancy.WorkFormat">
+                        </div>
+                        <div class="admin-field">
+                            <label>Ссылка</label>
+                            <input asp-for="NewVacancy.Url">
+                        </div>
+                        <div class="admin-field">
+                            <label>Порядок</label>
+                            <input asp-for="NewVacancy.Order" type="number">
+                        </div>
+                        <button class="admin-button" type="submit">Добавить</button>
+                    </form>
+                </section>
+                <section class="admin-card">
+                    <h2>Текущие вакансии</h2>
+                    @if (Model.Vacancies.Count == 0)
+                    {
+                        <p class="admin-empty">Нет добавленных вакансий</p>
+                    }
+                    else
+                    {
+                        <ul class="admin-list">
+                            @foreach (var vacancy in Model.Vacancies)
+                            {
+                                <li class="admin-list__item">
+                                    <div class="admin-list__summary">
+                                        <div>
+                                            <strong>@vacancy.Title</strong>
+                                            <span>@vacancy.WorkFormat</span>
+                                        </div>
+                                        <span class="admin-list__order">@vacancy.Order</span>
+                                    </div>
+                                    <form class="admin-form" method="post" asp-page-handler="UpdateVacancy" asp-route-id="@vacancy.Id">
+                                        <div class="admin-field">
+                                            <label>Название</label>
+                                            <input name="title" value="@vacancy.Title">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Формат работы</label>
+                                            <input name="workFormat" value="@vacancy.WorkFormat">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Ссылка</label>
+                                            <input name="url" value="@vacancy.Url">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Порядок</label>
+                                            <input name="order" type="number" value="@vacancy.Order">
+                                        </div>
+                                        <div class="admin-list__actions">
+                                            <button class="admin-button admin-button--small" type="submit">Сохранить</button>
+                                            <a class="admin-button admin-button--secondary admin-button--small" href="@vacancy.Url" target="_blank" rel="noreferrer">Открыть</a>
+                                        </div>
+                                    </form>
+                                    <form class="admin-list__actions" method="post" asp-page-handler="DeleteVacancy" asp-route-id="@vacancy.Id">
+                                        <button class="admin-button admin-button--danger admin-button--small" type="submit">Удалить</button>
+                                    </form>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="~/js/admin-validation.js"></script>
+</body>
+</html>

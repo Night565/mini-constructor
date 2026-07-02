@@ -1,0 +1,60 @@
+@page
+@model AdminIndexModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-topbar">
+            <a class="admin-brand" asp-page="/Index">
+                <span class="admin-brand__title">TravelLine.Tech</span>
+            </a>
+            <div class="admin-actions">
+                <a class="admin-button admin-button--secondary" asp-page="/Index">На сайт</a>
+                <form method="post" asp-page="/Admin/Login" asp-page-handler="Logout">
+                    <button class="admin-button admin-button--danger" type="submit">Выйти</button>
+                </form>
+            </div>
+        </header>
+        <div class="admin-container">
+            <div class="admin-page__header">
+                <div>
+                    <h1>Админ-панель</h1>
+                </div>
+            </div>
+            <nav class="admin-dashboard">
+                <a class="admin-dashboard__card" asp-page="/Admin/Hero">
+                    <span class="admin-dashboard__icon">01</span>
+                    <h2>Главый блок</h2>
+                </a>
+                <a class="admin-dashboard__card" asp-page="/Admin/Stats">
+                    <span class="admin-dashboard__icon">02</span>
+                    <h2>Статистика</h2>
+                </a>
+                <a class="admin-dashboard__card" asp-page="/Admin/Team">
+                    <span class="admin-dashboard__icon">03</span>
+                    <h2>Команда</h2>
+                </a>
+                <a class="admin-dashboard__card" asp-page="/Admin/Directions">
+                    <span class="admin-dashboard__icon">04</span>
+                    <h2>Направления</h2>
+                </a>
+                <a class="admin-dashboard__card" asp-page="/Admin/Vacancies">
+                    <span class="admin-dashboard__icon">05</span>
+                    <h2>Вакансии</h2>
+                </a>
+                <a class="admin-dashboard__card" asp-page="/Admin/Benefits">
+                    <span class="admin-dashboard__icon">06</span>
+                    <h2>Плюшки</h2>
+                </a>
+            </nav>
+        </div>
+    </main>
+</body>
+</html>

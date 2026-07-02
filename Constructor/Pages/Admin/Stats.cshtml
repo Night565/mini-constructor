@@ -1,0 +1,97 @@
+@page
+@model StatsModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика | Админ-панель</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-topbar">
+            <a class="admin-brand" asp-page="/Admin/Index">
+                <span class="admin-brand__title">TravelLine.Tech</span>
+                <span class="admin-brand__caption">Админ-панель</span>
+            </a>
+            <div class="admin-actions">
+                <a class="admin-button admin-button--secondary" asp-page="/Admin/Index">Назад</a>
+                <a class="admin-button admin-button--secondary" asp-page="/Index">На сайт</a>
+            </div>
+        </header>
+        <div class="admin-container">
+            <div class="admin-page__header">
+                <div>
+                    <h1 class="admin-page__title">Статистика</h1>
+                </div>
+            </div>
+            <div class="admin-validation" data-admin-validation asp-validation-summary="All"></div>
+            <div class="admin-content-grid">
+                <section class="admin-card admin-card--create admin-stats-create">
+                    <h2 class="admin-section-title">Добавить статистику</h2>
+                    <form class="admin-form" method="post" asp-page-handler="CreateStat">
+                        <div class="admin-field">
+                            <label>Заголовок</label>
+                            <input asp-for="NewStat.Value">
+                        </div>
+                        <div class="admin-field">
+                            <label>Описание</label>
+                            <input asp-for="NewStat.Label">
+                        </div>
+                        <div class="admin-field">
+                            <label>Порядок</label>
+                            <input asp-for="NewStat.Order" type="number">
+                        </div>
+                        <button class="admin-button" type="submit">Добавить</button>
+                    </form>
+                </section>
+                <section class="admin-card admin-card--list admin-stats-current">
+                    <h2 class="admin-section-title">Текущая статистика</h2>
+                    @if (Model.Stats.Count == 0)
+                    {
+                        <p class="admin-empty">Нет добавленных показателей</p>
+                    }
+                    else
+                    {
+                        <ul class="admin-list admin-stat-list">
+                            @foreach (var stat in Model.Stats)
+                            {
+                                <li class="admin-list__item admin-stat-item">
+                                    <div class="admin-list__summary admin-stat-header">
+                                        <div>
+                                            <strong class="admin-stat-value">@stat.Value</strong>
+                                            <span class="admin-stat-label">@stat.Label</span>
+                                        </div>
+                                        <span class="admin-list__order">@stat.Order</span>
+                                    </div>
+                                    <form class="admin-form admin-form--inline admin-stat-edit-form" method="post" asp-page-handler="UpdateStat" asp-route-id="@stat.Id">
+                                        <div class="admin-field">
+                                            <label>Заголовок</label>
+                                            <input name="value" value="@stat.Value">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Описание</label>
+                                            <input name="label" value="@stat.Label">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Порядок</label>
+                                            <input name="order" type="number" value="@stat.Order">
+                                        </div>
+                                        <button class="admin-button admin-button--small" type="submit">Сохранить</button>
+                                    </form>
+                                    <form class="admin-list__actions admin-stat-delete-form" method="post" asp-page-handler="DeleteStat" asp-route-id="@stat.Id">
+                                        <button class="admin-button admin-button--danger admin-button--small" type="submit">Удалить</button>
+                                    </form>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="~/js/admin-validation.js"></script>
+</body>
+</html>

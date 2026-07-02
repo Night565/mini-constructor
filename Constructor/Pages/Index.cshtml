@@ -1,0 +1,112 @@
+@page
+@model IndexModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelLine.Tech</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <header class="site-header">
+        <a class="logo" href="/">TravelLine</a>
+
+        <nav class="main-nav">
+            <a href="#team">Команда</a>
+            <a href="#directions">Направления</a>
+            <a href="#vacancies">Вакансии</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1>@Model.Hero.Title</h1>
+                <p class="hero__text">@Model.Hero.Subtitle</p>
+            </div>
+        </section>
+        <section class="stats-section">
+            <div class="section__header">
+                <h2>О TravelLine</h2>
+            </div>
+            <div class="stats">
+                @foreach (var stat in Model.Stats)
+                {
+                    <div class="stats__item">
+                        <strong>@stat.Value</strong>
+                        <span>@stat.Label</span>
+                    </div>
+                }
+            </div>
+        </section>
+        <section class="section" id="team">
+            <div class="section__header">
+                <h2>Любим и бережем свою команду</h2>
+            </div>
+            <div class="team-grid">
+                @foreach (var member in Model.TeamMembers)
+                {
+                    <article class="person-card">
+                        <img class="person-card__image" src="@(string.IsNullOrWhiteSpace(member.PhotoPath) ? "/img/team-placeholder.svg" : member.PhotoPath)" alt="Сотрудник команды">
+                        <div class="person-card__content">
+                            <h3 class="card-title">@member.FullName</h3>
+                            <p class="card-text">@member.Position</p>
+                        </div>
+                    </article>
+                }
+            </div>
+        </section>
+        <section class="section section--muted" id="directions">
+            <div class="section__header">
+                <h2>Направления</h2>
+            </div>
+            <div class="directions-grid">
+                @foreach (var direction in Model.Directions)
+                {
+                    <article class="direction-card">
+                        <h3 class="card-title">@direction.Title</h3>
+                        <p class="card-text">@direction.Description</p>
+                        <p class="card-text">@direction.Technologies</p>
+                    </article>
+                }
+            </div>
+        </section>
+        <section class="section" id="vacancies">
+            <div class="section__header">
+                <h2>Ищем прямо сейчас</h2>
+            </div>
+            <div class="vacancy-list">
+                @foreach (var vacancy in Model.Vacancies)
+                {
+                    <article class="vacancy-card">
+                        <div class="vacancy-card__content">
+                            <h3 class="card-title">@vacancy.Title</h3>
+                            <p class="card-text">@vacancy.WorkFormat</p>
+                        </div>
+                        <a class="vacancy-card__link" href="@vacancy.Url" target="_blank" rel="noreferrer">Откликнуться</a>
+                    </article>
+                }
+            </div>
+        </section>
+        <section class="section section--muted" id="benefits">
+            <div class="section__header">
+                <h2>Плюшки и все такое</h2>
+            </div>
+            <div class="benefits-grid">
+                @foreach (var benefit in Model.Benefits)
+                {
+                    <article class="benefit-card">
+                        <h3 class="card-title">@benefit.Title</h3>
+                        <p class="card-text">@benefit.Description</p>
+                    </article>
+                }
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <p>TravelLine.Tech</p>
+        <a href="mailto:hr@travelline.ru">hr@travelline.ru</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+@page
+@model HeroModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Первый экран | Админ-панель</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-topbar">
+            <a class="admin-brand" asp-page="/Admin/Index">
+                <span class="admin-brand__title">TravelLine.Tech</span>
+                <span class="admin-brand__caption">Админ-панель</span>
+            </a>
+            <div class="admin-actions">
+                <a class="admin-button admin-button--secondary" asp-page="/Admin/Index">Назад</a>
+                <a class="admin-button admin-button--secondary" asp-page="/Index">На сайт</a>
+            </div>
+        </header>
+        <div class="admin-container">
+            <div class="admin-page__header">
+                <div>
+                    <h1>Главный блок</h1>
+                </div>
+            </div>
+            <div class="admin-validation" data-admin-validation asp-validation-summary="All"></div>
+            <section class="admin-card">
+                <h2>Редактировать главный текст</h2>
+                <form class="admin-form" method="post" asp-page-handler="SaveHeroContent">
+                    <div class="admin-field">
+                        <label>Заголовок</label>
+                        <textarea asp-for="Hero.Title"></textarea>
+                    </div>
+                    <div class="admin-field">
+                        <label>Подзаголовок</label>
+                        <textarea asp-for="Hero.Subtitle"></textarea>
+                    </div>
+                    <button class="admin-button" type="submit">Сохранить</button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script src="~/js/admin-validation.js"></script>
+</body>
+</html>

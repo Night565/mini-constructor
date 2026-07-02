@@ -1,0 +1,248 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    color: #141414;
+    background: #f5f7fb;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 20px clamp(20px, 6vw, 72px);
+    color: #ffffff;
+    background: transparent;
+}
+.logo {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.main-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 15px;
+}
+
+.main-nav a {
+    color: #e5e7eb;
+}
+
+.main-nav a:hover {
+    color: #ffffff;
+}
+
+.hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+    padding: 120px clamp(20px, 6vw, 72px) 72px;
+    color: #ffffff;
+    background: #2563eb;
+}
+
+.hero__content {
+    max-width: 900px;
+}
+
+.hero h1,
+.section__header h2 {
+    margin: 0;
+    line-height: 1.05;
+}
+
+.hero h1 {
+    max-width: 760px;
+    font-size: clamp(44px, 7vw, 92px);
+}
+
+.hero__text {
+    max-width: 640px;
+    margin: 24px 0 0;
+    color: #dbeafe;
+    font-size: 22px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.stats-section {
+    padding: 72px clamp(20px, 6vw, 72px);
+    color: #141414;
+    background: #ffffff;
+}
+
+.stats-section__header {
+    max-width: 720px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.stats-section__header h2 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 56px);
+    line-height: 1.05;
+}
+
+.stats__item {
+    min-height: 156px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 28px;
+    border: 1px solid #dbe3ef;
+    border-radius: 8px;
+    background: #eef2f7;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    text-align: center;
+}
+
+.stats__item strong {
+    display: block;
+    color: #2563eb;
+    font-size: 42px;
+    line-height: 1;
+}
+
+.stats__item span {
+    color: #64748b;
+    max-width: 260px;
+    font-size: 17px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.section {
+    padding: 72px clamp(20px, 6vw, 72px);
+    background: #eef2f7;
+}
+
+.section--muted {
+    background: #ffffff;
+}
+
+.section__header {
+    max-width: 720px;
+    margin: 0 auto 32px;
+    text-align: center;
+}
+
+.section__header h2 {
+    font-size: clamp(32px, 4vw, 56px);
+}
+
+.team-grid,
+.directions-grid,
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.person-card,
+.direction-card,
+.vacancy-card,
+.benefit-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.person-card {
+    overflow: hidden;
+}
+
+.person-card__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: #dbeafe;
+}
+
+.person-card__content,
+.direction-card,
+.benefit-card {
+    padding: 20px;
+}
+
+.card-title {
+    color: #2563eb;
+    margin: 0 0 8px;
+    font-size: 22px;
+}
+
+.card-text {
+    margin: 0;
+    color: #64748b;
+}
+
+.vacancy-list {
+    display: grid;
+    gap: 16px;
+}
+
+.vacancy-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px;
+}
+
+.vacancy-card__link {
+    flex: 0 0 auto;
+    padding: 12px 18px;
+    border-radius: 8px;
+    color: #ffffff;
+    background: #2563eb;
+    font-weight: 700;
+}
+
+.site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 28px clamp(20px, 6vw, 72px);
+    background: #2563eb;
+}
+
+.site-footer p {
+    color: #ffffff;
+    margin: 0;
+    font-weight: 800;
+}
+
+.site-footer a {
+    color: #ffffff;
+    margin: 0;
+    font-weight: 800;
+}

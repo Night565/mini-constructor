@@ -1,0 +1,32 @@
+@page
+@model LoginModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body class="admin-login-page">
+    <main class="admin-login-card">
+        <span class="admin-login-logo">TravelLine.Tech</span>
+        <h1>Вход</h1>
+        <div class="admin-validation login-validation" data-login-validation asp-validation-summary="All"></div>
+        <form class="admin-form" method="post">
+            <div class="admin-field">
+                <label asp-for="Username">Логин</label>
+                <input asp-for="Username">
+            </div>
+            <div class="admin-field">
+                <label asp-for="Password">Пароль</label>
+                <input asp-for="Password" type="password">
+            </div>
+            <button class="admin-button" type="submit">Войти</button>
+        </form>
+    </main>
+    <script src="~/js/login.js"></script>
+</body>
+</html>

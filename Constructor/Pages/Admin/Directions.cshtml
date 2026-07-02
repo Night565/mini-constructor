@@ -1,0 +1,107 @@
+@page
+@model DirectionsModel
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Направления | Админ-панель</title>
+    <link rel="stylesheet" href="~/css/admin.css">
+</head>
+<body class="admin-page">
+    <main class="admin-shell">
+        <header class="admin-topbar">
+            <a class="admin-brand" asp-page="/Admin/Index">
+                <span class="admin-brand__title">TravelLine.Tech</span>
+                <span class="admin-brand__caption">Админ-панель</span>
+            </a>
+            <div class="admin-actions">
+                <a class="admin-button admin-button--secondary" asp-page="/Admin/Index">Назад</a>
+                <a class="admin-button admin-button--secondary" asp-page="/Index">На сайт</a>
+            </div>
+        </header>
+        <div class="admin-container">
+            <div class="admin-page__header">
+                <div>
+                    <h1>Направления</h1>
+                </div>
+            </div>
+            <div class="admin-validation" data-admin-validation asp-validation-summary="All"></div>
+            <div class="admin-main-grid">
+                <section class="admin-card">
+                    <h2>Добавить направление</h2>
+                    <form class="admin-form" method="post" asp-page-handler="CreateDirection">
+                        <div class="admin-field">
+                            <label>Название</label>
+                            <input asp-for="NewDirection.Title">
+                        </div>
+                        <div class="admin-field">
+                            <label>Описание</label>
+                            <textarea asp-for="NewDirection.Description"></textarea>
+                        </div>
+                        <div class="admin-field">
+                            <label>Технологии</label>
+                            <input asp-for="NewDirection.Technologies">
+                        </div>
+                        <div class="admin-field">
+                            <label>Порядок</label>
+                            <input asp-for="NewDirection.Order" type="number">
+                        </div>
+                        <button class="admin-button" type="submit">Добавить</button>
+                    </form>
+                </section>
+                <section class="admin-card">
+                    <h2>Текущие направления</h2>
+                    @if (Model.Directions.Count == 0)
+                    {
+                        <p class="admin-empty">Нет добавленных направлений</p>
+                    }
+                    else
+                    {
+                        <ul class="admin-list">
+                            @foreach (var direction in Model.Directions)
+                            {
+                                <li class="admin-list__item">
+                                    <div class="admin-list__summary">
+                                        <div>
+                                            <strong>@direction.Title</strong>
+                                            <p>@direction.Description</p>
+                                            <small>@direction.Technologies</small>
+                                        </div>
+                                        <span class="admin-list__order">@direction.Order</span>
+                                    </div>
+
+                                    <form class="admin-form" method="post" asp-page-handler="UpdateDirection" asp-route-id="@direction.Id">
+                                        <div class="admin-field">
+                                            <label>Название</label>
+                                            <input name="title" value="@direction.Title">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Описание</label>
+                                            <textarea name="description">@direction.Description</textarea>
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Технологии</label>
+                                            <input name="technologies" value="@direction.Technologies">
+                                        </div>
+                                        <div class="admin-field">
+                                            <label>Порядок</label>
+                                            <input name="order" type="number" value="@direction.Order">
+                                        </div>
+                                        <button class="admin-button admin-button--small" type="submit">Сохранить</button>
+                                    </form>
+                                    <form class="admin-list__actions" method="post" asp-page-handler="DeleteDirection" asp-route-id="@direction.Id">
+                                        <button class="admin-button admin-button--danger admin-button--small" type="submit">Удалить</button>
+                                    </form>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </section>
+            </div>
+        </div>
+    </main>
+    <script src="~/js/admin-validation.js"></script>
+</body>
+</html>

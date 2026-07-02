@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Сотрудник команды">
+  <rect width="800" height="600" fill="#dbeafe"/>
+  <circle cx="400" cy="230" r="92" fill="#1d4ed8"/>
+  <path d="M220 520c18-95 86-150 180-150s162 55 180 150" fill="#1d4ed8"/>
+  <path d="M120 96h560" stroke="#0ea5e9" stroke-width="20" stroke-linecap="round" opacity=".55"/>
+  <path d="M160 150h480" stroke="#0ea5e9" stroke-width="12" stroke-linecap="round" opacity=".35"/>
+</svg>
