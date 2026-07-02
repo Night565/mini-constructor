@@ -2,3 +2,4 @@
 **/obj/
 **/.vscode/
 **/.git/
+.DS_Store
